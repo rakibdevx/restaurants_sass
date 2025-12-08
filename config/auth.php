@@ -1,5 +1,9 @@
 <?php
 
+use App\Models\Admin\Admin;
+use App\Models\Owner\Owner;
+use App\Models\User;
+
 return [
 
     /*
@@ -40,6 +44,14 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
+        'owner' => [
+            'driver' => 'session',
+            'provider' => 'owners',
+        ],
     ],
 
     /*
@@ -62,14 +74,20 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\User::class),
+            'model' => User::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => Admin::class,
+        ],
+
+        'owners' => [
+            'driver' => 'eloquent',
+            'model' => Owner::class,
+        ],
     ],
+
 
     /*
     |--------------------------------------------------------------------------

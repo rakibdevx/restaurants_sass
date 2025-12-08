@@ -22,7 +22,7 @@ Route::prefix('owner')->name('owner.')->group(function () {
     });
 
     // Authenticated routes (dashboard, logout, profile etc.)
-    Route::middleware(['auth:owner', 'owner.status.active'])->group(function () {
+    Route::middleware(['auth:owner'])->group(function () {
         Route::get('dashboard', function () {
             return view('owner.dashboard');
         })->name('dashboard');

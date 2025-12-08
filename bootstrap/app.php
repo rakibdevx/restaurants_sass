@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Middleware\AdminMiddleware;
+use App\Http\Middleware\OwnerMiddleware;
+use App\Http\Middleware\UserMiddleware;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
-use Illuminate\Support\Facades\Auth;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -17,21 +19,11 @@ return Application::configure(basePath: dirname(__DIR__))
         }
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        // Global middleware
-        // উদাহরণ: সব request-এ log করা
-        $middleware->before(function ($request) {
-            logger('Request URL: ' . $request->fullUrl());
-        });
-
-        // উদাহরণ: auth guard check
-        $middleware->after(function ($request, $response) {
-            if ($request->user('owner') && $request->user('owner')->status !== 'active') {
-                Auth::guard('owner')->logout();
-                return redirect()->route('owner.login')->withErrors([
-                    'email' => 'Your account is ' . $request->user('owner')->status
-                ]);
-            }
-        });
+        $middleware->alias([
+            'auth.admin' => AdminMiddleware::class,
+            'auth.owner' => OwnerMiddleware::class,
+            'auth.user' => UserMiddleware::class,
+        ]);
     })
 
     ->withExceptions(function (Exceptions $exceptions): void {
