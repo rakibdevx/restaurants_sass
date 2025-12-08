@@ -96,8 +96,11 @@ class AuthController extends Controller
             'password' => 'required|string|min:6|confirmed',
         ]);
 
+        $username = strtolower(str_replace(' ', '', $data['name'])) . rand(1000, 9999);
+
         $owner = Owner::create([
             'name' => $data['name'],
+            'username' => $username,
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);

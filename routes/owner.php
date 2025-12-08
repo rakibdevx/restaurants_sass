@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('owner')->name('owner.')->group(function () {
 
     // Guest routes (login, register, forgot password)
-    Route::middleware('guest:owner')->group(function () {
+    Route::middleware('guest:owner','web')->group(function () {
         Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
         Route::post('login', [AuthController::class, 'login']);
 
