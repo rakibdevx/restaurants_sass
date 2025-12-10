@@ -26,8 +26,16 @@ return new class extends Migration
                 ->default('active');
 
             $table->timestamp('email_verified_at')->nullable();
+            $table->rememberToken()->nullable();
             $table->timestamp('last_login_at')->nullable();
-            $table->string('last_login_ip')->nullable();
+            $table->ipAddress('last_login_ip')->nullable();
+            $table->integer('failed_login_attempts')->default(0);
+            $table->timestamp('lockout_time')->nullable();
+            $table->boolean('two_factor_enabled')->default(false);
+            $table->string('two_factor_secret')->nullable();
+            $table->timestamp('two_factor_expires_at')->nullable();
+            $table->timestamp('last_password_change')->nullable();
+
 
             $table->timestamps();
         });

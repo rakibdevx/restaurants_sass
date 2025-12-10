@@ -12,15 +12,14 @@ class SettingsSeeder extends Seeder
         $settings = [
 
             // ------- BASIC INFO -------
-            ['key' => 'site_name', 'value' => 'My Awesome Website'],
-            ['key' => 'site_url', 'value' => 'main.com:8000'],
+            ['key' => 'site_title', 'value' => 'My Awesome Website'],
+            ['key' => 'site_url', 'value' => 'main.com'],
             ['key' => 'site_tagline', 'value' => 'Best Website Ever'],
             ['key' => 'site_logo', 'value' => 'logo.png'],
+            ['key' => 'site_dark_logo', 'value' => 'logo.png'],
             ['key' => 'site_favicon', 'value' => 'favicon.ico'],
-            ['key' => 'site_email', 'value' => 'info@example.com'],
+
             ['key' => 'support_email', 'value' => 'support@example.com'],
-            ['key' => 'contact_email', 'value' => 'contact@example.com'],
-            ['key' => 'site_phone', 'value' => '+8801000000000'],
             ['key' => 'support_phone', 'value' => '+8801555000000'],
             ['key' => 'site_address', 'value' => 'Dhaka, Bangladesh'],
 

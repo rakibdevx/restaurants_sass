@@ -281,15 +281,18 @@
                     <hr class="dropdown-divider">
                 </li>
                 <li>
-                    <a class="dropdown-item" href="javascript:;">
-                    <div class="d-flex align-items-center">
-                        <div class="">
-                        <ion-icon name="log-out-outline"></ion-icon>
+                    <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <div class="d-flex align-items-center">
+                            <ion-icon name="log-out-outline"></ion-icon>
+                            <div class="ms-3"><span>Logout</span></div>
                         </div>
-                        <div class="ms-3"><span>Logout</span></div>
-                    </div>
                     </a>
+
+                    <form id="logout-form" action="{{ route('owner.logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
                 </li>
+
                 </ul>
             </li>
 

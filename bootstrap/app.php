@@ -13,7 +13,7 @@ return Application::configure(basePath: dirname(__DIR__))
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
         then: function ($router) {
-            // require base_path('routes/admin.php');
+            require base_path('routes/admin.php');
             require base_path('routes/owner.php');
             // require base_path('routes/user.php');
         }
