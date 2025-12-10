@@ -1,3 +1,3 @@
-<h1>{{ $tenant }}</h1>
-<p>This website belongs to: {{$tenant}}</p>
+<h1>{{ $owner->name }}</h1>
+<p>This website belongs to: {{$owner->id}}</p>
 <p>Theme 4</p>

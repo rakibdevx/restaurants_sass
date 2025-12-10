@@ -10,16 +10,11 @@ class TenantDomainMiddleware
 {
     protected $mainDomains = [];
 
-    public function __construct()
-    {
-        $this->mainDomains = [
-            setting('site_url'),
-        ];
-    }
-
-
     public function handle(Request $request, Closure $next)
     {
+        $this->mainDomains = [
+            trim(setting('site_url')),
+        ];
         $host = $request->getHost();
 
         if (in_array($host, $this->mainDomains)) {
@@ -28,16 +23,16 @@ class TenantDomainMiddleware
 
         $owner = Owner::where('domain', $host)->first();
 
-        if (!$owner && str_contains($host, '.main.com')) {
+        if (!$owner && str_contains($host, '.'.setting('site_url'))) {
             $username = explode('.', $host)[0];
             $owner = Owner::where('username', $username)->first();
         }
 
         if (!$owner) {
-            abort(404, "No Url setup On this Domain");
+            abort(404, "No URL setup on this domain");
         }
 
-        app()->instance('tenant', $owner);
+        app()->instance('tenant', $owner->id);
 
         return $next($request);
     }

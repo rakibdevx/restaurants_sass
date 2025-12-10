@@ -4,7 +4,7 @@ namespace App\Models\Admin;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Setting extends Model
+class Theme extends Model
 {
     protected $guarded = [];
 }
