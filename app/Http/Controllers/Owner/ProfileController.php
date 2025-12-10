@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Owner;
 
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -66,7 +68,12 @@ class ProfileController extends Controller
         return back()->with('success','Profile update Successfully');
     }
 
-    public function information(Request $request)
+    public function information()
+    {
+        return view('owner.profile.information');
+    }
+
+    public function information_update(Request $request)
     {
         $request->validate([
             'phone'       => 'required|numeric',
@@ -90,4 +97,55 @@ class ProfileController extends Controller
         return back()->with('success','Information update Successfully');
 
     }
+        public function business()
+    {
+        return view('owner.profile.business');
+    }
+
+    public function business_update(Request $request)
+    {
+        $owner = Auth::guard('owner')->user();
+
+        $request->validate([
+            'company_name' => 'required|string|max:255',
+
+            // REGEX + UNIQUE
+            'domain' => [
+                'nullable',
+                // 'url',
+                'max:255',
+                'unique:owners,domain,' . $owner->id,
+            ],
+        ]);
+
+        $owner->update([
+            'company_name' => $request->company_name,
+            'domain'       => $request->domain,
+        ]);
+
+        return back()->with('success', 'Business information updated successfully');
+    }
+
+    public function updatePassword(Request $request)
+    {
+        $request->validate([
+            'old_password' => 'required',
+            'new_password' => 'required|min:6|confirmed',
+        ]);
+
+        $owner = Auth::guard('owner')->user();
+
+        if (!Hash::check($request->old_password, $owner->password)) {
+            return back()->withErrors(['old_password' => 'Old password is incorrect']);
+        }
+
+        $owner->password = Hash::make($request->new_password);
+        $owner->last_password_change = Carbon::now();
+        $owner->save();
+
+        return back()->with('success', 'Password updated successfully!');
+    }
+
+
+
 }

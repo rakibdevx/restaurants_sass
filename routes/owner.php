@@ -30,10 +30,18 @@ Route::prefix('owner')->name('owner.')->group(function () {
 
         Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-        Route::get('profile', [ProfileController::class, 'index'])->name('profile');
-        Route::post('profile', [ProfileController::class, 'update'])->name('profile.update');
-        Route::post('information', [ProfileController::class, 'information'])->name('information.update');
+        Route::prefix('profile')->name('profile.')->group(function () {
+            Route::get('/', [ProfileController::class, 'index'])->name('index');
+            Route::post('/', [ProfileController::class, 'update']);
 
+            Route::post('/password', [ProfileController::class, 'updatePassword'])->name('password');
+
+            Route::get('information', [ProfileController::class, 'information'])->name('information');
+            Route::post('information', [ProfileController::class, 'information_update']);
+
+            Route::get('business', [ProfileController::class, 'business'])->name('business');
+            Route::post('business', [ProfileController::class, 'business_update']);
+        });
     });
 
 });

@@ -19,6 +19,7 @@ return Application::configure(basePath: dirname(__DIR__))
         }
     )
     ->withMiddleware(function (Middleware $middleware): void {
+         $middleware->prepend(\App\Http\Middleware\TenantDomainMiddleware::class);
         $middleware->alias([
             'auth.admin' => AdminMiddleware::class,
             'auth.owner' => OwnerMiddleware::class,
