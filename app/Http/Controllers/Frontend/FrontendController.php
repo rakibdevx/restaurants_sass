@@ -10,6 +10,6 @@ class FrontendController extends Controller
     public function index()
     {
         $tenant = app('tenant');
-        dd($tenant);
+        return view('frontend.index',compact('tenant'));
     }
 }

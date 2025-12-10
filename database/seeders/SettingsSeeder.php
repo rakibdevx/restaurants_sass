@@ -126,6 +126,7 @@ class SettingsSeeder extends Seeder
             ['key' => 'cart_expire_time', 'value' => '60'], // minutes
 
             // ------- EXTRA SETTINGS (to reach 100+) -------
+            ['key' => 'default_theme', 'value' => '1'],
             ['key' => 'theme_color_primary', 'value' => '#3498db'],
             ['key' => 'theme_color_secondary', 'value' => '#2ecc71'],
             ['key' => 'theme_dark_mode', 'value' => 'disabled'],

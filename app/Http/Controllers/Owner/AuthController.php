@@ -103,6 +103,7 @@ class AuthController extends Controller
             'username' => $username,
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'theme' => setting('default_theme'),
         ]);
 
         Auth::guard('owner')->login($owner);

@@ -8,10 +8,15 @@ use App\Models\Owner\Owner;
 
 class TenantDomainMiddleware
 {
-    
-    protected $mainDomains = [
-        'main.com',
-    ];
+    protected $mainDomains = [];
+
+    public function __construct()
+    {
+        $this->mainDomains = [
+            setting('site_url'),
+        ];
+    }
+
 
     public function handle(Request $request, Closure $next)
     {
@@ -32,7 +37,7 @@ class TenantDomainMiddleware
             abort(404, "No Url setup On this Domain");
         }
 
-        app()->instance('tenant', $owner->id);
+        app()->instance('tenant', $owner);
 
         return $next($request);
     }

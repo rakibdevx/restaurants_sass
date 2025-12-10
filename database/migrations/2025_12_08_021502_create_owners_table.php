@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('company_logo')->nullable();
             $table->string('slug')->unique()->nullable();
             $table->string('domain')->nullable();
+            $table->string('theme')->nullable();
             $table->text('address')->nullable();
             $table->string('city')->nullable();
             $table->string('state')->nullable();
