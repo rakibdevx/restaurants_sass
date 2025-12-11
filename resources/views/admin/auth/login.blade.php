@@ -49,10 +49,10 @@ Log In
                 <label class="form-check-label" for="flexSwitchCheckRemember">Remember Me</label>
             </div>
         </div>
-
+{{--
         <div class="col-12 col-lg-6 text-end">
             <a href="{{ route('owner.password.request') }}">Forgot Password?</a>
-        </div>
+        </div> --}}
 
         <div class="col-12 col-lg-12">
             <div class="d-grid">
@@ -60,12 +60,12 @@ Log In
             </div>
         </div>
 
-        <div class="col-12 col-lg-12 text-center">
+        {{-- <div class="col-12 col-lg-12 text-center">
             <p class="mb-0">
                 Don't have an account?
                 <a href="{{ route('owner.register') }}">Sign up</a>
             </p>
-        </div>
+        </div> --}}
     </form>
 
 </div>

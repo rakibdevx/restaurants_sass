@@ -15,4 +15,10 @@ class Owner extends Authenticatable
         'lockout_time' => 'datetime',
         'last_login_at' => 'datetime',
     ];
+    
+    protected $hidden = [
+        'password',
+        'remember_token',
+        'two_factor_secret',
+    ];
 }

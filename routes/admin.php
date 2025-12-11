@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\SettingController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -28,6 +29,16 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::post('/password', [ProfileController::class, 'updatePassword'])->name('password');
 
         });
+
+        Route::prefix('setting')->name('setting.')->group(function () {
+            Route::get('/', [SettingController::class, 'index'])->name('index');
+            Route::post('/', [SettingController::class, 'update']);
+
+            Route::get('/image', [SettingController::class, 'image'])->name('image');
+            Route::post('/image', [SettingController::class, 'image_update']);
+        });
+
+
     });
 
 });

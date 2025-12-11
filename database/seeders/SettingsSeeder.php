@@ -77,6 +77,9 @@ class SettingsSeeder extends Seeder
             ['key' => 'mail_from_name', 'value' => 'Admin'],
 
             // ------- HOME PAGE SETTINGS -------
+            ['key' => 'default_profile_image', 'value' => 'public/uploads/default/default_profile_image.png'],
+
+            
             ['key' => 'home_banner_title', 'value' => 'Welcome to Our Website'],
             ['key' => 'home_banner_subtitle', 'value' => 'We provide the best services'],
             ['key' => 'home_banner_image', 'value' => 'banner.jpg'],

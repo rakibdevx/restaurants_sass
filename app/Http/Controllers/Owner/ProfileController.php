@@ -29,8 +29,8 @@ class ProfileController extends Controller
 
 
         if ($request->hasFile('photo')) {
-            if ($owner->profile_image && file_exists(public_path('uploads/owners/profile/' . $owner->profile_image))) {
-                unlink(public_path('uploads/owners/profile/' . $owner->profile_image));
+            if ($owner->profile_image && file_exists(public_path($owner->profile_image))) {
+                unlink(public_path($owner->profile_image));
             }
 
             $file = $request->photo;
