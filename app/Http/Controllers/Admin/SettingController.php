@@ -33,7 +33,16 @@ class SettingController extends Controller
 
     public function image_update(Request $request)
     {
-        $images = ['site_logo','site_dark_logo','site_favicon','default_profile_image'];
+        $images = [
+            'site_logo',
+            'site_dark_logo',
+            'site_favicon',
+            'default_profile_image',
+            'sign_in_image',
+            'sign_up_image',
+            'password_forgot_image',
+            'otp_verify_image',
+        ];
 
         foreach ($images as $imageKey) {
 

@@ -6,7 +6,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
+  <link rel="icon" type="image/x-icon" href="{{asset(setting('site_favicon'))}}">
   <!-- loader-->
   <link href="{{asset('/')}}backend/assets/css/pace.min.css" rel="stylesheet" />
   <script src="{{asset('/')}}backend/assets/js/pace.min.js"></script>
@@ -26,26 +26,13 @@
 
 <body>
 
-  <!--start wrapper-->
-  <div class="wrapper">
-    <div class="">
-      <div class="row g-0 m-0">
-        <div class="col-xl-6 col-lg-12">
-          <div class="login-cover-wrapper">
-            <div class="card shadow-none">
-              @yield('body')
-            </div>
-          </div>
+    <!--start wrapper-->
+    <div class="wrapper">
+        <div class="">
+            @yield('body')
         </div>
-        <div class="col-xl-6 col-lg-12">
-          <div class="position-fixed top-0 h-100 d-xl-block d-none register-cover-img">
-          </div>
-        </div>
-      </div>
-      <!--end row-->
     </div>
-  </div>
-  <!--end wrapper-->
+    <!--end wrapper-->
 
 
 </body>

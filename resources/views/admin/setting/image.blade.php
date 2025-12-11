@@ -1,6 +1,6 @@
 @extends('admin.layout.index')
 @push('title')
-General Setting
+Image Setting
 @endpush
 @section('body')
 <div class="page-content">
@@ -13,7 +13,7 @@ General Setting
                     <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}"><ion-icon name="home-outline"></ion-icon></a>
                     </li>
                     <li class="breadcrumb-item" aria-current="page">Setting</li>
-                    <li class="breadcrumb-item active" aria-current="page">General Setting</li>
+                    <li class="breadcrumb-item active" aria-current="page">Image Setting</li>
                 </ol>
                 </nav>
             </div>
@@ -24,7 +24,7 @@ General Setting
             <div class="card radius-10">
                 <div class="card-body">
                     {{-- ================= USER INFORMATION ================= --}}
-                    <h5 class="mb-0 mt-4">General Setting</h5>
+                    <h5 class="mb-0 mt-4">Image Setting</h5>
                     <hr>
 
                    <form action="{{ route('admin.setting.image') }}" method="POST" enctype="multipart/form-data">
@@ -52,6 +52,26 @@ General Setting
                                 <label class="form-label">Default Profile Image</label>
                                 <input type="file" name="default_profile_image" class="form-control">
                                 <img src="{{asset(setting('default_profile_image'))}}" alt="" height="50">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Sign In Image</label>
+                                <input type="file" name="sign_in_image" class="form-control">
+                                <img src="{{asset(setting('sign_in_image'))}}" alt="" height="50">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Sign Up Image</label>
+                                <input type="file" name="sign_up_image" class="form-control">
+                                <img src="{{asset(setting('sign_up_image'))}}" alt="" height="50">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Password Forgot Image</label>
+                                <input type="file" name="password_forgot_image" class="form-control">
+                                <img src="{{asset(setting('password_forgot_image'))}}" alt="" height="50">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Verify Image</label>
+                                <input type="file" name="otp_verify_image" class="form-control">
+                                <img src="{{asset(setting('otp_verify_image'))}}" alt="" height="50">
                             </div>
 
                         </div>
