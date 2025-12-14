@@ -690,69 +690,26 @@
 
                         <div class="row justify-content-center">
                             <!-- Basic Plan -->
-                            <div class="col-lg-4 col-md-6 col-sm-12">
-                                <div class="pricing-item pricing-item-one mb-40 wow fadeInUp">
-                                    <div class="pricing-head text-center">
-                                        <span class="plan">Basic Plan</span>
-                                        <h2 class="price"><span class="currency">$</span>19.95 / mo</h2>
-                                    </div>
-                                    <div class="pricing-body">
-                                        <p>Perfect for small restaurants starting online</p>
-                                        <ul class="pricing-list">
-                                            <li class="check">Restaurant Website</li>
-                                            <li class="check">Online Ordering</li>
-                                            <li class="check">Menu Management</li>
-                                            <li class="uncheck">Analytics Dashboard</li>
-                                            <li class="uncheck">Priority Support</li>
-                                        </ul>
-                                        <a href="register.html" class="main-btn arrow-btn">Choose Plan</a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Standard Plan -->
-                            <div class="col-lg-4 col-md-6 col-sm-12">
-                                <div class="pricing-item pricing-item-one mb-40 wow fadeInUp">
-                                    <div class="ribbon">Popular</div>
-                                    <div class="pricing-head text-center">
-                                        <span class="plan">Standard Plan</span>
-                                        <h2 class="price"><span class="currency">$</span>49.95 / mo</h2>
-                                    </div>
-                                    <div class="pricing-body">
-                                        <p>Best for growing restaurants with advanced features</p>
-                                        <ul class="pricing-list">
-                                            <li class="check">Restaurant Website</li>
-                                            <li class="check">Online Ordering</li>
-                                            <li class="check">Menu Management</li>
-                                            <li class="check">Analytics Dashboard</li>
-                                            <li class="check">Email & Chat Support</li>
-                                        </ul>
-                                        <a href="register.html" class="main-btn arrow-btn">Choose Plan</a>
+                            @foreach($plans as $plan)
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="pricing-item pricing-item-one mb-40 wow fadeInUp">
+                                        <div class="pricing-head text-center">
+                                            <span class="plan">{{ $plan->name }}</span>
+                                            <h2 class="price"><span class="currency">{{ $plan->currency }}</span>{{ $plan->price }} / {{ $plan->duration }}</h2>
+                                        </div>
+                                        <div class="pricing-body">
+                                            <p>{{ $plan->description }}</p>
+                                            <ul class="pricing-list">
+                                                {{-- @foreach($plan->features as $feature => $included)
+                                                    <li class="{{ $included ? 'check' : 'uncheck' }}">{{ $feature }}</li>
+                                                @endforeach --}}
+                                                {{$plan->features}}
+                                            </ul>
+                                            <a href="{{ route('owner.register') }}" class="main-btn arrow-btn">Choose Plan</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <!-- Premium Plan -->
-                            <div class="col-lg-4 col-md-6 col-sm-12">
-                                <div class="pricing-item pricing-item-one mb-40 wow fadeInUp">
-                                    <div class="pricing-head text-center">
-                                        <span class="plan">Premium Plan</span>
-                                        <h2 class="price"><span class="currency">$</span>99.95 / mo</h2>
-                                    </div>
-                                    <div class="pricing-body">
-                                        <p>Full-featured plan for high-volume restaurants</p>
-                                        <ul class="pricing-list">
-                                            <li class="check">Restaurant Website</li>
-                                            <li class="check">Online Ordering</li>
-                                            <li class="check">Menu Management</li>
-                                            <li class="check">Analytics Dashboard</li>
-                                            <li class="check">Priority Support & Consulting</li>
-                                        </ul>
-                                        <a href="register.html" class="main-btn arrow-btn">Choose Plan</a>
-                                    </div>
-                                </div>
-                            </div>
-
+                            @endforeach
                         </div>
 
                     </div>

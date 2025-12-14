@@ -8,6 +8,14 @@
         </a>
     </li>
     <li>
+        <a href="{{route('admin.plans.index')}}">
+        <div class="parent-icon">
+            <i class="fadeIn animated bx bx-package"></i>
+        </div>
+        <div class="menu-title">Plans</div>
+        </a>
+    </li>
+    <li>
         <a class="has-arrow" href="javascript:;">
             <div class="parent-icon">
                 <ion-icon name="cog-outline"></ion-icon>

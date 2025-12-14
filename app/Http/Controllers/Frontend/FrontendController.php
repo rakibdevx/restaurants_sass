@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Plan;
 use App\Models\Admin\Theme;
 use App\Models\Owner\Owner;
 use Illuminate\Http\Request;
@@ -28,7 +29,8 @@ class FrontendController extends Controller
     public function index()
     {
         if ($this->domainType === 'main') {
-            return view('frontend.main.home.index');
+            $plans = Plan::where('status','active')->get();
+            return view('frontend.main.home.index',compact('plans'));
         }
 
         $viewPath = 'frontend.' . $this->theme->assets_path . '.home.index';
