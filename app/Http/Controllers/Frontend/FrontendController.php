@@ -12,19 +12,30 @@ class FrontendController extends Controller
     protected $tenant;
     protected $theme;
     protected $owner;
+    protected $domainType;
 
     public function __construct()
     {
-        $this->tenant = app('tenant');
-        $this->owner = Owner::find($this->tenant);
-        $this->theme = Theme::find($this->owner->theme);
+        $this->domainType = app('domain_type');
+
+        if ($this->domainType !== 'main') {
+            $this->tenant = app('tenant');
+            $this->owner = Owner::find($this->tenant);
+            $this->theme = Theme::find($this->owner->theme);
+        }
     }
 
     public function index()
     {
+        if ($this->domainType === 'main') {
+            return view('frontend.main.home.index');
+        }
 
-        $viewPath = 'frontend.' .$this->theme->assets_path . '.home.index';
+        $viewPath = 'frontend.' . $this->theme->assets_path . '.home.index';
 
-        return view($viewPath, ['owner' => $this->owner]);
+        return view($viewPath, [
+            'owner' => $this->owner,
+            'theme' => $this->theme,
+        ]);
     }
 }

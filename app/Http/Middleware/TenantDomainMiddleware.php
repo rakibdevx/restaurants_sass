@@ -18,6 +18,7 @@ class TenantDomainMiddleware
         $host = $request->getHost();
 
         if (in_array($host, $this->mainDomains)) {
+            app()->instance('domain_type', 'main');
             return $next($request);
         }
 
@@ -31,7 +32,7 @@ class TenantDomainMiddleware
         if (!$owner) {
             abort(404, "No URL setup on this domain");
         }
-
+        app()->instance('domain_type', 'custome');
         app()->instance('tenant', $owner->id);
 
         return $next($request);
