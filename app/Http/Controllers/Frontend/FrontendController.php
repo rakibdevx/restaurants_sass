@@ -30,7 +30,8 @@ class FrontendController extends Controller
     {
         if ($this->domainType === 'main') {
             $plans = Plan::where('status','active')->get();
-            return view('frontend.main.home.index',compact('plans'));
+            $features = ['Website', 'Online Ordering', 'Menu Management', 'Analytics', 'Support'];
+            return view('frontend.main.home.index',compact('plans','features'));
         }
 
         $viewPath = 'frontend.' . $this->theme->assets_path . '.home.index';

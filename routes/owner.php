@@ -30,6 +30,8 @@ Route::prefix('owner')->name('owner.')->group(function () {
 
         Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+        Route::get('purchase/{id}', [DashboardController::class, 'purchase'])->name('purchase');
+
         Route::prefix('profile')->name('profile.')->group(function () {
             Route::get('/', [ProfileController::class, 'index'])->name('index');
             Route::post('/', [ProfileController::class, 'update']);

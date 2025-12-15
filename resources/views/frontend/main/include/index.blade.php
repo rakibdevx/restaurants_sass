@@ -697,15 +697,19 @@
                                             <span class="plan">{{ $plan->name }}</span>
                                             <h2 class="price"><span class="currency">{{ $plan->currency }}</span>{{ $plan->price }} / {{ $plan->duration }}</h2>
                                         </div>
+
                                         <div class="pricing-body">
                                             <p>{{ $plan->description }}</p>
                                             <ul class="pricing-list">
-                                                {{-- @foreach($plan->features as $feature => $included)
-                                                    <li class="{{ $included ? 'check' : 'uncheck' }}">{{ $feature }}</li>
-                                                @endforeach --}}
-                                                {{$plan->features}}
+                                               @foreach($features as $feature)
+                                                    <li class="{{ array_key_exists($feature, json_decode($plan->features, true)) ? 'check' : 'uncheck' }}">
+                                                        {{ $feature }}
+                                                    </li>
+                                                @endforeach
                                             </ul>
-                                            <a href="{{ route('owner.register') }}" class="main-btn arrow-btn">Choose Plan</a>
+                                            <a href="
+                                            {{ auth()->guard('owner')->check() ? route('owner.purchase',$plan->id)  : route('owner.login') }}
+                                            " class="main-btn arrow-btn">Choose Plan</a>
                                         </div>
                                     </div>
                                 </div>

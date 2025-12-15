@@ -11,4 +11,5 @@ class Plan extends Model
     protected $casts = [
         'features' => 'array',
     ];
+
 }
