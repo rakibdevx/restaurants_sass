@@ -3,6 +3,7 @@
 use App\Http\Controllers\Owner\AuthController;
 use App\Http\Controllers\Owner\DashboardController;
 use App\Http\Controllers\Owner\ProfileController;
+use App\Http\Controllers\Owner\ThemeController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -31,6 +32,11 @@ Route::prefix('owner')->name('owner.')->group(function () {
         Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
         Route::get('purchase/{id}', [DashboardController::class, 'purchase'])->name('purchase');
+
+
+        Route::get('theme',[ThemeController::class,'index'])->name('theme.index');
+        Route::get('theme/{id}',[ThemeController::class,'active'])->name('theme.active');
+
 
         Route::prefix('profile')->name('profile.')->group(function () {
             Route::get('/', [ProfileController::class, 'index'])->name('index');

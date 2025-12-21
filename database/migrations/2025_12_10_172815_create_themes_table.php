@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->string('version')->default('1.0.0');
             $table->boolean('status')->default(true);
+            $table->boolean('is_default')->default(false);
             $table->string('assets_path')->nullable();
             $table->string('preview_image')->nullable();
             $table->string('preview_link')->nullable();

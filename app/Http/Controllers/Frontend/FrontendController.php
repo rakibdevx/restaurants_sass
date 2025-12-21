@@ -22,7 +22,13 @@ class FrontendController extends Controller
         if ($this->domainType !== 'main') {
             $this->tenant = app('tenant');
             $this->owner = Owner::find($this->tenant);
-            $this->theme = Theme::find($this->owner->theme);
+            if($this->owner->theme == 'default')
+            {
+                $this->theme = Theme::where('is_default',true)->first();
+            }
+            else{
+                $this->theme = Theme::find($this->owner->theme);
+            }
         }
     }
 

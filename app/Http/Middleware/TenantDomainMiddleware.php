@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use App\Models\Owner\Owner;
+use Illuminate\Support\Carbon;
 
 class TenantDomainMiddleware
 {
@@ -23,6 +24,12 @@ class TenantDomainMiddleware
         }
 
         $owner = Owner::where('domain', $host)->first();
+
+        if ($owner && $owner->expiry_time) {
+            if ($owner->expiry_time && now()->gt($owner->expiry_time)) {
+                abort(403, 'Your subscription has expired');
+            }
+        }
 
         if (!$owner && str_contains($host, '.'.setting('site_url'))) {
             $username = explode('.', $host)[0];

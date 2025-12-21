@@ -8,6 +8,14 @@
         </a>
     </li>
     <li>
+        <a href="{{route('owner.theme.index')}}">
+        <div class="parent-icon">
+            <ion-icon name="images-outline"></ion-icon>
+        </div>
+        <div class="menu-title">Theme</div>
+        </a>
+    </li>
+    <li>
         <a class="has-arrow" href="javascript:;">
             <div class="parent-icon">
                 <ion-icon name="create-outline"></ion-icon>

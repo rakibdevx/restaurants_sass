@@ -63,11 +63,9 @@
                 @php
                     $user = Auth::guard('owner')->user();
 
-                    $url = $user->domain
-                        ? 'https://' . $user->domain
-                        : 'https://' . $user->username . route('index');
+                    $url = tenantUrl($user);
                 @endphp
-                <a class="nav-link" href="{{ $url }}">
+                <a class="nav-link" href="{{ $url }}" target="_blank">
                 <div class="">
                     <ion-icon name="globe"></ion-icon>
                 </div>
