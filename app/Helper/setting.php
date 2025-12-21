@@ -16,14 +16,14 @@ if (!function_exists('setting')) {
 }
 
 if (!function_exists('tenantUrl')) {
-    function tenantUrl($user)
+    function tenantUrl($user) 
     {
         $scheme = request()->getScheme();
         $port = (config('app.env') === 'local') ? ':8000' : '';
         if ($user->domain) {
             return "{$scheme}://{$user->domain}{$port}";
         }
-        
+
         $baseDomain = parse_url(config('app.url'), PHP_URL_HOST);
 
         return "{$scheme}://{$user->username}.{$baseDomain}{$port}";
