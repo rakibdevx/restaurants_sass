@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->decimal('price', 8, 2);
             $table->string('currency', 10)->default('$');
-            $table->string('duration', 10)->default('mo'); // mo/year
+            $table->integer('duration')->default(1);
+            $table->string('duration_type', 10)->default('month');
             $table->text('description')->nullable();
             $table->json('features')->nullable();
             $table->enum('status', ['active', 'inactive'])->default('active');

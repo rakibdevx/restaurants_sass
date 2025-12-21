@@ -14,8 +14,9 @@ class Owner extends Authenticatable
     protected $casts = [
         'lockout_time' => 'datetime',
         'last_login_at' => 'datetime',
+        'expiry_time' => 'datetime',
     ];
-    
+
     protected $hidden = [
         'password',
         'remember_token',

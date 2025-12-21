@@ -101,7 +101,7 @@
                             </div>
                             <div class="header-right-nav">
                                 <ul>
-                                    <li class="cart-item"><a href="#"><span class="number">0</span><i class="far fa-shopping-cart"></i></a></li>
+                                    <li class="cart-item"><a href="{{ auth()->guard('owner')->check() ?route('owner.dashboard') :route('owner.login')}}" title="Login"><i class="fas fa-user-lock	"></i></a></li>
                                     <li class="bar-item"><a href="#"><img src="{{asset('/')}}frontend/main/assets/images/dot.png" alt="dot"></a></li>
                                     <li class="navbar-toggle-btn">
                                         <div class="navbar-toggler">

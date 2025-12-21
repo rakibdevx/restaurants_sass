@@ -35,7 +35,8 @@ class PlanController extends Controller
             'slug' => 'required|string|unique:plans,slug',
             'price' => 'required|numeric',
             'currency' => 'required|string|max:5',
-            'duration' => 'required|string|max:5',
+            'duration' => 'required|numeric',
+            'duration_type' => 'required|string|max:5',
             'description' => 'nullable|string',
             'status' => 'required|in:active,inactive',
         ]);
@@ -64,7 +65,8 @@ class PlanController extends Controller
             'slug' => 'required|string|unique:plans,slug,'.$plan->id,
             'price' => 'required|numeric',
             'currency' => 'required|string|max:5',
-            'duration' => 'required|string|max:5',
+            'duration' => 'required|numeric',
+            'duration_type' => 'required|string|max:5',
             'description' => 'nullable|string',
             'status' => 'required|in:active,inactive',
         ]);

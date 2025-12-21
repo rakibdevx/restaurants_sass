@@ -35,6 +35,7 @@ return new class extends Migration
 
             // Login / Security
             $table->enum('status',['active','suspend','pending'])->default('active');
+            $table->timestamp('expiry_time')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken()->nullable();
             $table->timestamp('last_login_at')->nullable();

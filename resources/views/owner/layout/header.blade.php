@@ -16,10 +16,60 @@
         <div class="top-navbar-right ms-auto">
 
             <ul class="navbar-nav align-items-center">
+            <li class="nav-item nav-item w-auto">
+               @php
+                    use Carbon\Carbon;
+
+                    $expiry = Auth::guard('owner')->user()->expiry_time;
+                    $now = Carbon::now();
+                    $color = 'success';
+
+                    if (!$expiry || $expiry->isPast()) {
+                        $text = 'Expired';
+                    } else {
+
+                        $minutes = (int) floor($now->diffInMinutes($expiry));
+                        $hours   = (int) floor($now->diffInHours($expiry));
+                        $days    = (int) floor($now->diffInDays($expiry));
+
+                        if ($days > 7) {
+                            $text = $expiry->format('d M Y');
+                        }
+                        elseif ($days >= 1) {
+                            $text = $days . ' days left';
+                            $color = 'warning';
+                        }
+                        elseif ($hours >= 1) {
+                            $text = $hours . ' hours left';
+                            $color = 'warning';
+                        }
+                        else {
+                            $text = $minutes . ' minutes left';
+                            $color = 'danger';
+                        }
+                    }
+                @endphp
+
+                <a href="{{route('index')}}" class="badge bg-{{$color}}">Expiry Time : {{$text}}</a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link mobile-search-button" href="javascript:;">
                 <div class="">
                     <ion-icon name="search-outline"></ion-icon>
+                </div>
+                </a>
+            </li>
+            <li class="nav-item">
+                @php
+                    $user = Auth::guard('owner')->user();
+
+                    $url = $user->domain
+                        ? 'https://' . $user->domain
+                        : 'https://' . $user->username . route('index');
+                @endphp
+                <a class="nav-link" href="{{ $url }}">
+                <div class="">
+                    <ion-icon name="globe"></ion-icon>
                 </div>
                 </a>
             </li>
@@ -209,17 +259,26 @@
             <li class="nav-item dropdown dropdown-user-setting">
                 <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="javascript:;" data-bs-toggle="dropdown">
                 <div class="user-setting">
-                    <img src="{{asset('/')}}backend/assets/images/avatars/06.png" class="user-img" alt="">
+                    <img src="
+                    {{ Auth::guard('owner')->user()->profile_image
+                    ? asset(Auth::guard('owner')->user()->profile_image)
+                    : asset(setting('default_profile_image')) }}
+                    " class="user-img" alt="{{Auth::guard('owner')->user()->name}}">
                 </div>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
                 <li>
                     <a class="dropdown-item" href="javascript:;">
                     <div class="d-flex flex-row align-items-center gap-2">
-                        <img src="{{asset('/')}}backend/assets/images/avatars/06.png" alt="" class="rounded-circle" width="54" height="54">
+                        <img src="
+                        {{ Auth::guard('owner')->user()->profile_image
+                        ? asset(Auth::guard('owner')->user()->profile_image)
+                        : asset(setting('default_profile_image')) }}
+                        " class="user-img" alt="{{Auth::guard('owner')->user()->name}}"
+                        class="rounded-circle" width="54" height="54">
                         <div class="">
-                        <h6 class="mb-0 dropdown-user-name">Jhon Deo</h6>
-                        <small class="mb-0 dropdown-user-designation text-secondary">UI Developer</small>
+                        <h6 class="mb-0 dropdown-user-name">{{Auth::guard('owner')->user()->name}}</h6>
+                        <small class="mb-0 dropdown-user-designation text-secondary">Owner</small>
                         </div>
                     </div>
                     </a>
@@ -228,7 +287,7 @@
                     <hr class="dropdown-divider">
                 </li>
                 <li>
-                    <a class="dropdown-item" href="javascript:;">
+                    <a class="dropdown-item" href="{{route('owner.profile.index')}}">
                     <div class="d-flex align-items-center">
                         <div class="">
                         <ion-icon name="person-outline"></ion-icon>
@@ -248,32 +307,12 @@
                     </a>
                 </li>
                 <li>
-                    <a class="dropdown-item" href="javascript:;">
+                    <a class="dropdown-item" href="{{route('owner.dashboard')}}">
                     <div class="d-flex align-items-center">
                         <div class="">
                         <ion-icon name="speedometer-outline"></ion-icon>
                         </div>
                         <div class="ms-3"><span>Dashboard</span></div>
-                    </div>
-                    </a>
-                </li>
-                <li>
-                    <a class="dropdown-item" href="javascript:;">
-                    <div class="d-flex align-items-center">
-                        <div class="">
-                        <ion-icon name="wallet-outline"></ion-icon>
-                        </div>
-                        <div class="ms-3"><span>Earnings</span></div>
-                    </div>
-                    </a>
-                </li>
-                <li>
-                    <a class="dropdown-item" href="javascript:;">
-                    <div class="d-flex align-items-center">
-                        <div class="">
-                        <ion-icon name="cloud-download-outline"></ion-icon>
-                        </div>
-                        <div class="ms-3"><span>Downloads</span></div>
                     </div>
                     </a>
                 </li>
